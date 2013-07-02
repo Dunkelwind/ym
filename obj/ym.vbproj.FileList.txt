@@ -1,0 +1,15 @@
+obj\Debug\ym.exe
+obj\Debug\ym.xml
+obj\Debug\ym.pdb
+bin\ym.exe
+bin\ym.pdb
+bin\ym.xml
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\ym.frmAbout.resources
+obj\Debug\ym.frmInstrEdit.resources
+obj\Debug\ym.Form1.resources
+obj\Debug\ym.frmSeqEdit.resources
+obj\Debug\ym.frmShapeEdit.resources
+obj\Debug\ym.frmToolTip.resources
+obj\Debug\ym.frmTrackEdit.resources
+obj\Debug\ym.vbproj.GenerateResource.Cache

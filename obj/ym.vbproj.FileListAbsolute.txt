@@ -1,0 +1,15 @@
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.exe
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.xml
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.pdb
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\bin\ym.exe
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\bin\ym.pdb
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\bin\ym.xml
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ResolveAssemblyReference.cache
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.frmAbout.resources
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.frmInstrEdit.resources
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.Form1.resources
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.frmSeqEdit.resources
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.frmShapeEdit.resources
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.frmToolTip.resources
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.frmTrackEdit.resources
+C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\obj\Debug\ym.vbproj.GenerateResource.Cache

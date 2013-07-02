@@ -1,0 +1,17 @@
+instrument commands
+
+E0, dest			Jmp dest
+E1					End
+E2					ResetShape			; Reset Shape Index
+E3, delta, max		FreqMod
+E4, nfreq			TuneNoise
+E5					Noise
+E6					Tune
+E7, g				InstrGroup
+E8, n				Speed
+E9, freq			Triangle
+EA, n				Unknown
+
+after command (except Speed) following notes
+
+

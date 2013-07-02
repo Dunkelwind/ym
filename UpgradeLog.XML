@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?>
+<UpgradeLog>
+<Properties><Property Name="Solution" Value="ym">
+</Property><Property Name="Projektmappendatei" Value="C:\Dokumente und Einstellungen\bm\Eigene Dateien\Visual Studio 2005\Projects\ym\ym.sln">
+</Property><Property Name="Date" Value="Dienstag, 31. Januar 2006">
+</Property><Property Name="Time" Value="19:33">
+</Property></Properties><Event ErrorLevel="0" Project="ym" Source="ym.vbproj" Description="Projekt erfolgreich konvertiert">
+</Event><Event ErrorLevel="3" Project="ym" Source="ym.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="ym.sln" Description="Die Projektmappe wurde erfolgreich konvertiert.">
+</Event><Event ErrorLevel="3" Project="" Source="ym.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="ym" Source="ym.vbproj" Description="Überprüfung abgeschlossen: Aktualisierung von Projektdateien nicht erforderlich.">
+</Event></UpgradeLog>

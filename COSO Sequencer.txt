@@ -1,0 +1,118 @@
+  'sequencer for compressed data 
+
+   Sub sequencer(ByRef vs As _VOICE_SET)
+        Dim i, j As Short
+        Dim b As Byte
+
+        vs.seq_time -= 1
+        If vs.seq_time >= 0 Then
+            Exit Sub
+        End If
+        vs.seq_time = vs.seq_time_init
+
+
+        Do While 1
+            i = vs.seq_index
+            b = seq.Seq(vs.seq_current, i)
+            i += 1
+            If b = &HFF Then                    ' end of sequence
+
+                '--- Track-Interpeter ---
+
+                If PlayMode = Mode.PlaySeq Then
+                    vs.track_note = 0
+                    vs.track_shape = 0
+                    vs.seq_current = 0      'seq 0 must be always "pause"
+                    vs.seq_index = 0
+                    Form1.WaveGen.reset()
+                    Form1.WaveGen.PlayFlag = False
+                    Exit Sub
+                End If
+
+                If vs.nr = 0 Then
+                    vs.track_count -= 1
+                    If vs.track_count < 0 Then
+                        If PlayMode = Mode.PlayTrackOnce Then
+                            vs.track_note = 0
+                            vs.track_shape = 0
+                            vs.seq_current = 0      'seq 0 must be always "pause"
+                            vs.seq_index = 0
+                            Form1.WaveGen.reset()
+                            Form1.WaveGen.PlayFlag = False
+                        End If
+                        vs.track_count = track_length           'play it again
+                        VoiceSet(0).track_index = 0
+                        VoiceSet(1).track_index = 0
+                        VoiceSet(2).track_index = 0
+                    End If
+                End If
+                j = vs.track_current + vs.track_index
+                trackPos = j
+                vs.track_note = track.GetNote(vs.nr, j)
+                vs.track_shape = track.GetInstr(vs.nr, j)
+                b = track.GetCmd(vs.nr, j)
+                If (b And &HF0) = &HF0 Then
+                    vs.track_reduce = b And &HF
+                ElseIf (b And &HE0) = &HE0 Then
+                    play_speed = b And &HF
+                End If
+                vs.seq_current = track.GetSeq(vs.nr, j)
+                vs.seq_index = 0
+                vs.track_index += 1
+
+                '--- End Track-Interpeter ---
+
+            ElseIf b = &HFE Then
+                b = seq.Seq(vs.seq_current, i)
+                vs.seq_time = b
+                vs.seq_time_init = b
+                vs.seq_index += 2
+            ElseIf b = &HFD Then    'Pause
+                b = seq.Seq(vs.seq_current, i)
+                vs.seq_time = b
+                vs.seq_time_init = b
+                vs.seq_index += 2
+                Exit Sub
+            Else
+                Exit Do
+            End If
+        Loop
+
+
+        vs.seq_note = b                         ' Tonhöhe
+        b = seq.Seq(vs.seq_current, i)
+        i += 1
+        vs.seq_shape = b                        ' hkurve
+        If (b And &HE0) > 0 Then
+            vs.seq_instr = seq.Seq(vs.seq_current, i)   'Instrument
+            i += 1
+        End If
+        vs.seq_index = i
+        vs.bend_var = 0
+
+        If (vs.seq_note And &H80) = 0 Then                  'Tonhöhe positiv
+            b = (vs.seq_shape And &H1F) + vs.track_shape
+            vs.shape_time = shape.shape_set(b).para1
+            vs.shape_time_init = shape.shape_set(b).para1
+            vs.delta_f = shape.shape_set(b).para3
+
+            vs.flags = &H40
+            vs.mod_f_work = shape.shape_set(b).para4
+            vs.mod_f_max = shape.shape_set(b).para4
+            vs.tfmx_count = shape.shape_set(b).para5
+            vs.shape_current = b
+            vs.shape_index = 0
+
+            If (vs.seq_shape And &H40) > 0 Then
+                b = vs.seq_instr
+            Else
+                b = shape.shape_set(b).para2
+            End If
+            vs.instr_current = b
+            vs.instr_count = 0
+            vs.instr_index = 0
+            vs.shape_count = 0
+        End If
+
+
+    End Sub
