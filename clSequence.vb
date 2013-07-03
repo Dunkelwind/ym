@@ -1,6 +1,6 @@
 Imports System.IO
 
-<Serializable()> Public Class Sequence
+<Serializable()> Public Class clSequence
     Const MAX_SEQ As Integer = 256
     Public n As Short
     Public temp As Short
@@ -17,7 +17,7 @@ Imports System.IO
 
 
     Public seqs(MAX_SEQ - 1 + 1) As _SEQ
-
+    Public count As Integer
 
 
 
@@ -56,7 +56,7 @@ Imports System.IO
         seqs(temp).seq(i).shape = 0
         seqs(temp).seq(i).xtra = 0
 
-
+        count = 0
     End Sub
 
     Public Sub clear()

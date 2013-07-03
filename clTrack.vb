@@ -12,4 +12,22 @@
             row(i) = New clTrackEntry
         Next
     End Sub
+
+    Sub usedSeqs(ByRef list As Generic.SortedList(Of Integer, Integer), first As Integer, last As Integer)
+        Dim seq As Integer
+
+
+        Dim i As Integer
+
+        For i = first To last
+            seq = row(i).seq
+            If list.ContainsKey(seq) Then
+                list.Item(seq) += 1
+            Else
+                list.Add(seq, 1)
+            End If
+        Next
+
+
+    End Sub
 End Class

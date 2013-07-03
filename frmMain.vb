@@ -16,7 +16,7 @@ Public Class Form1
     Dim shapes As New Shape
     Dim instrs As New Instr
     Dim samples As New Sample
-    Dim sequences As New Sequence
+    Dim sequences As New clSequence
     Dim tracks As New clTracks(256)
     Public Shared interpreter As New interpreter
     Dim RawYM As New YMImport
@@ -474,7 +474,7 @@ Public Class Form1
         YMm.instr = instrs
         YMm.shapes = shapes
         YMm.seqs = sequences
-        YMm.track = tracks
+        YMm.tracks = tracks
         YMm.sndInfo = sndInfo
 
         'Dim serializer As New BinaryFormatter
@@ -513,7 +513,7 @@ Public Class Form1
         lbType3.Text = YMm.id3
         instrs = YMm.instr
         sequences = YMm.seqs
-        tracks = YMm.track
+        tracks = YMm.tracks
         sndInfo = YMm.sndInfo
 
         'lbType2.Text = xmlSer.Deserialize(fs)
@@ -619,7 +619,8 @@ Public Class Form1
 
     Private Sub cmbNr_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbNr.SelectedIndexChanged
         Dim si As Interpreter._SND_INFO
-
+        Timer1.Enabled = False
+        WaveGen.PlayFlag = False
         TrackEdit.SetWorkTrack(tracks)
         SeqEdit.SetWorkSeq(tracks, sequences)
 
@@ -631,6 +632,7 @@ Public Class Form1
             WaveGen.PlayFlag = False
             interpreter.init_voices(si, interpreter.Mode.PlayTrack)
             WaveGen.PlayFlag = True
+            Timer1.Enabled = True
         End If
     End Sub
 
@@ -669,7 +671,7 @@ Public Class Form1
         ymm.instr = instrs
         ymm.shapes = shapes
         ymm.seqs = sequences
-        ymm.track = tracks
+        ymm.tracks = tracks
         ymm.sndInfo = sndInfo
 
         info.print(ymm)

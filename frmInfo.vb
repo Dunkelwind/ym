@@ -1,5 +1,13 @@
 ﻿Public Class frmInfo
 
+    Sub New()
+
+        ' Dieser Aufruf ist für den Designer erforderlich.
+        InitializeComponent()
+
+        ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
+
+    End Sub
     Sub print(ByRef ymm As clYMm)
 
         Dim s As String = ""
@@ -16,31 +24,24 @@
         Next
 
 
-        Dim usedSeqs As New Generic.SortedDictionary(Of Integer, Integer)
-        Dim seq As Integer
-        Dim track As Integer
-
-        For i = 0 To ymm.track.MaxRow
-            For track = 0 To 2
-                seq = ymm.track.GetSeq(track, i)
-                If usedSeqs.ContainsKey(seq) Then
-                    usedSeqs.Item(seq) += 1
-                Else
-                    usedSeqs.Add(seq, 1)
-                End If
-            Next
-
+        Dim usedSeqs As New Generic.SortedList(Of Integer, Integer)
+        For i = 0 To 2
+            ymm.tracks.Tracks(i).usedSeqs(usedSeqs, 0, ymm.tracks.MaxRow)
         Next
+
+
 
         s &= CStr(usedSeqs.Count) & " sequences used" & vbCrLf
         s &= "used sequences: "
 
 
-        For Each seq In usedSeqs.Keys
+        For Each seq As Integer In usedSeqs.Keys
             s &= CStr(seq) & ": " & CStr(usedSeqs.Item(seq)) & "x ;"
         Next
         s &= vbCrLf
 
         txtInfo.Text = s
     End Sub
+
+    'Public Shared Function Max( Integer))( source As IEnumerable() ) As TSource
 End Class

@@ -44,7 +44,7 @@ Public Class frmShapeEdit
     Friend WithEvents btnLE As System.Windows.Forms.Button
     Friend WithEvents btnLD As System.Windows.Forms.Button
     Friend WithEvents btnLC As System.Windows.Forms.Button
-    Private WorkSeq As Sequence
+    Private WorkSeq As clSequence
 
 #Region " Vom Windows Form Designer generierter Code "
 
@@ -691,7 +691,7 @@ Public Class frmShapeEdit
 
 #End Region
 
-    Public Sub SetWorkShapes(ByRef shapes As Shape, ByRef ws As Sequence)
+    Public Sub SetWorkShapes(ByRef shapes As Shape, ByRef ws As clSequence)
         Dim i As Integer
 
         WorkShapes = shapes

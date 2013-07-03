@@ -127,7 +127,7 @@ Public Class AtariTFMX
         Return True
     End Function
 
-    Public Function LoadSeq(ByRef seqs As Sequence) As Boolean
+    Public Function LoadSeq(ByRef seqs As clSequence) As Boolean
         Dim i, j As Short
         Dim size As Integer
         Dim b As Byte
@@ -169,7 +169,7 @@ Public Class AtariTFMX
 
 
         Next
-
+        seqs.count = sizes(2) + 1
         'If type1 = "TFMX" Then
         '    seqs.compress(sizes(2))
         'End If

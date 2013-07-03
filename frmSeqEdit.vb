@@ -7,7 +7,7 @@ Public Class frmSeqEdit
     Const seqLines As Integer = 32
 
     Private WorkTrack As clTracks
-    Private WorkSeq As Sequence
+    Private WorkSeq As clSequence
 
     Private f As New Font("Courier New", 10)
     Private f2 As New Font("Courier New", 10, FontStyle.Bold)
@@ -16,7 +16,7 @@ Public Class frmSeqEdit
     Private fontWidth3 As Integer
 
     Private ColumnPos(3) As Short
-    Public viewedSeqs() As Short = {4, 1, 2}
+    Dim viewedSeqs() As Short = {4, 1, 2}
 
     Private WorkLine As Short
     Private Const VisibleLines As Integer = 7
@@ -36,169 +36,14 @@ Public Class frmSeqEdit
     "C-5", "C#5", "D-5", "D#5", "E-5", "F-5", "F#5", "G-5", "G#5", "A-5", "A#5", "H-5", _
     "C-6", "C#6", "D-6", "D#6", "E-6", "F-6", "F#6", "G-6", "G#6", "A-6", "A#6", "H-6"}
 
-#Region " Vom Windows Form Designer generierter Code "
 
-    Public Sub New()
-        MyBase.New()
 
-        ' Dieser Aufruf ist für den Windows Form-Designer erforderlich.
+
+    Sub New()
+        ' Dieser Aufruf ist für den Designer erforderlich.
         InitializeComponent()
 
-        ' Initialisierungen nach dem Aufruf InitializeComponent() hinzufügen
-        myNew()
-
-
-    End Sub
-
-    ' Die Form überschreibt den Löschvorgang der Basisklasse, um Komponenten zu bereinigen.
-    Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
-        If disposing Then
-            If Not (components Is Nothing) Then
-                components.Dispose()
-            End If
-        End If
-        MyBase.Dispose(disposing)
-    End Sub
-
-    ' Für Windows Form-Designer erforderlich
-    Private components As System.ComponentModel.IContainer
-
-    'HINWEIS: Die folgende Prozedur ist für den Windows Form-Designer erforderlich
-    'Sie kann mit dem Windows Form-Designer modifiziert werden.
-    'Verwenden Sie nicht den Code-Editor zur Bearbeitung.
-    Friend WithEvents cmdPlay As System.Windows.Forms.Button
-    Friend WithEvents VScrollBar1 As System.Windows.Forms.VScrollBar
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents chkFollow As System.Windows.Forms.CheckBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TimerCursor As System.Windows.Forms.Timer
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents cbSeq3 As System.Windows.Forms.ComboBox
-    Friend WithEvents cbSeq2 As System.Windows.Forms.ComboBox
-    Friend WithEvents cbSeq1 As System.Windows.Forms.ComboBox
-    <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.cmdPlay = New System.Windows.Forms.Button()
-        Me.VScrollBar1 = New System.Windows.Forms.VScrollBar()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.cbSeq3 = New System.Windows.Forms.ComboBox()
-        Me.cbSeq2 = New System.Windows.Forms.ComboBox()
-        Me.cbSeq1 = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.chkFollow = New System.Windows.Forms.CheckBox()
-        Me.TimerCursor = New System.Windows.Forms.Timer(Me.components)
-        Me.Panel1.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'cmdPlay
-        '
-        Me.cmdPlay.Location = New System.Drawing.Point(410, 0)
-        Me.cmdPlay.Name = "cmdPlay"
-        Me.cmdPlay.Size = New System.Drawing.Size(40, 24)
-        Me.cmdPlay.TabIndex = 2
-        Me.cmdPlay.Text = "Play"
-        '
-        'VScrollBar1
-        '
-        Me.VScrollBar1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.VScrollBar1.Location = New System.Drawing.Point(530, 0)
-        Me.VScrollBar1.Name = "VScrollBar1"
-        Me.VScrollBar1.Size = New System.Drawing.Size(16, 293)
-        Me.VScrollBar1.TabIndex = 3
-        '
-        'Panel1
-        '
-        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel1.Controls.Add(Me.cbSeq3)
-        Me.Panel1.Controls.Add(Me.cbSeq2)
-        Me.Panel1.Controls.Add(Me.cbSeq1)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.chkFollow)
-        Me.Panel1.Controls.Add(Me.cmdPlay)
-        Me.Panel1.Location = New System.Drawing.Point(0, 248)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(546, 44)
-        Me.Panel1.TabIndex = 4
-        '
-        'cbSeq3
-        '
-        Me.cbSeq3.FormattingEnabled = True
-        Me.cbSeq3.Location = New System.Drawing.Point(174, 3)
-        Me.cbSeq3.Name = "cbSeq3"
-        Me.cbSeq3.Size = New System.Drawing.Size(53, 21)
-        Me.cbSeq3.TabIndex = 11
-        '
-        'cbSeq2
-        '
-        Me.cbSeq2.FormattingEnabled = True
-        Me.cbSeq2.Location = New System.Drawing.Point(115, 3)
-        Me.cbSeq2.Name = "cbSeq2"
-        Me.cbSeq2.Size = New System.Drawing.Size(53, 21)
-        Me.cbSeq2.TabIndex = 10
-        '
-        'cbSeq1
-        '
-        Me.cbSeq1.FormattingEnabled = True
-        Me.cbSeq1.Location = New System.Drawing.Point(46, 3)
-        Me.cbSeq1.Name = "cbSeq1"
-        Me.cbSeq1.Size = New System.Drawing.Size(53, 21)
-        Me.cbSeq1.TabIndex = 9
-        '
-        'Label2
-        '
-        Me.Label2.Location = New System.Drawing.Point(3, 6)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(43, 18)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "Seq:"
-        '
-        'Label1
-        '
-        Me.Label1.Location = New System.Drawing.Point(456, 6)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(40, 16)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "follow"
-        '
-        'chkFollow
-        '
-        Me.chkFollow.Checked = True
-        Me.chkFollow.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkFollow.Location = New System.Drawing.Point(502, 5)
-        Me.chkFollow.Name = "chkFollow"
-        Me.chkFollow.Size = New System.Drawing.Size(16, 16)
-        Me.chkFollow.TabIndex = 3
-        Me.chkFollow.Text = "CheckBox1"
-        '
-        'TimerCursor
-        '
-        Me.TimerCursor.Interval = 500
-        '
-        'frmSeqEdit
-        '
-        Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(546, 293)
-        Me.Controls.Add(Me.VScrollBar1)
-        Me.Controls.Add(Me.Panel1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.KeyPreview = True
-        Me.MaximizeBox = False
-        Me.Name = "frmSeqEdit"
-        Me.Text = "frmSeqEdit"
-        Me.Panel1.ResumeLayout(False)
-        Me.ResumeLayout(False)
-
-    End Sub
-
-#End Region
-
-
-    Sub mynew()
+        ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
 
         ColumnPos(0) = 0
         ColumnPos(1) = 40
@@ -227,11 +72,7 @@ Public Class frmSeqEdit
         Dim i As Integer
 
 
-        For i = 0 To 63
-            cbSeq1.Items.Add(String.Format("{0,2}", i))
-            cbSeq2.Items.Add(String.Format("{0,2}", i))
-            cbSeq3.Items.Add(String.Format("{0,2}", i))
-        Next
+  
 
 
 
@@ -242,11 +83,26 @@ Public Class frmSeqEdit
         Me.Hide()
     End Sub
 
-    Sub SetWorkSeq(ByRef wt As clTracks, ByRef ws As Sequence)
+    Sub SetWorkSeq(ByRef wt As clTracks, ByRef ws As clSequence)
         Dim i As Short
 
         WorkTrack = wt
         WorkSeq = ws
+        RemoveHandler cbSeq1.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+        RemoveHandler cbSeq2.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+        RemoveHandler cbSeq3.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+        cbSeq1.Items.Clear()
+        cbSeq2.Items.Clear()
+        cbSeq3.Items.Clear()
+        For i = 0 To ws.count - 1
+            cbSeq1.Items.Add(String.Format("{0,2}", i))
+            cbSeq2.Items.Add(String.Format("{0,2}", i))
+            cbSeq3.Items.Add(String.Format("{0,2}", i))
+        Next
+        AddHandler cbSeq1.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+        AddHandler cbSeq2.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+        AddHandler cbSeq3.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+
         Me.VScrollBar1.SmallChange = 1
         Me.VScrollBar1.LargeChange = 10
         Me.VScrollBar1.Maximum = seqLines + Me.VScrollBar1.LargeChange
@@ -271,9 +127,17 @@ Public Class frmSeqEdit
                 For j = 0 To 2
                     viewedSeqs(j) = WorkTrack.GetSeq(j, i)
                 Next
+                RemoveHandler cbSeq1.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+                RemoveHandler cbSeq2.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+                RemoveHandler cbSeq3.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+
                 cbSeq1.SelectedIndex = viewedSeqs(0)
                 cbSeq2.SelectedIndex = viewedSeqs(1)
                 cbSeq3.SelectedIndex = viewedSeqs(2)
+
+                AddHandler cbSeq1.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+                AddHandler cbSeq2.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
+                AddHandler cbSeq3.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
             Else
                 viewedSeqs(0) = cbSeq1.SelectedIndex
                 viewedSeqs(1) = cbSeq2.SelectedIndex
@@ -422,7 +286,7 @@ Public Class frmSeqEdit
         Dim fnt As Font
         Dim s As String
         Dim d As Short
-        Dim se As ym.Sequence._SEQENTRY
+        Dim se As ym.clSequence._SEQENTRY
         Dim brush As Brush
 
         myGfx.FillRectangle(Brushes.White, 0, 0, bmp.Width, bmp.Height)    'alles löschen
@@ -520,7 +384,7 @@ Public Class frmSeqEdit
         Return False
     End Function
 
- 
+
     Private Sub TimerCursor_Tick(ByVal sender As Object, ByVal e As System.EventArgs) Handles TimerCursor.Tick
         Static state As Byte = 0
 
@@ -540,7 +404,7 @@ Public Class frmSeqEdit
 
     End Sub
 
-    
+
     Private Sub frmSeqEdit_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         TimerCursor.Enabled = True
     End Sub
@@ -559,9 +423,4 @@ Public Class frmSeqEdit
 
     End Sub
 
-    Private Sub frmSeqEdit_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        AddHandler cbSeq1.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
-        AddHandler cbSeq2.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
-        AddHandler cbSeq3.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
-    End Sub
 End Class

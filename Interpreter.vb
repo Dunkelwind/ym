@@ -65,7 +65,7 @@ Public Class Interpreter
     Dim play_speed_count As Short
 
     Dim instr As instr
-    Dim seq As Sequence
+    Dim seq As clSequence
     Dim shape As shape
     Dim Tracks As clTracks
 
@@ -92,7 +92,7 @@ Public Class Interpreter
     Private ftype As _fType
     Public PlayMode As Mode
 
-    Sub init(ByVal f As String, ByRef i As Instr, ByRef se As Sequence, ByRef sh As Shape, ByRef t As clTracks)
+    Sub init(ByVal f As String, ByRef i As Instr, ByRef se As clSequence, ByRef sh As Shape, ByRef t As clTracks)
 
         Select Case f
             Case "TFMX"
@@ -503,7 +503,7 @@ next_s:         i = vs.shape_index
     Sub sequencer(ByRef vs As _VOICE_SET)
         Dim j As Short
         Dim b As Byte
-        Dim se As ym.Sequence._SEQENTRY
+        Dim se As ym.clSequence._SEQENTRY
 
 
         Do
