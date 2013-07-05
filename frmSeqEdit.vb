@@ -16,6 +16,8 @@ Public Class frmSeqEdit
     Private fontWidth3 As Integer
 
     Private ColumnPos(3) As Short
+    Dim trackTranspose(3) As Short
+
     Dim viewedSeqs() As Short = {4, 1, 2}
 
     Private WorkLine As Short
@@ -26,7 +28,7 @@ Public Class frmSeqEdit
     Private mySize As Size
     Private myPen = New Pen(Color.Black)
 
-
+    Dim trackPos As Integer = 0
 
     Dim NoteTable() As String = { _
     "C-1", "C#1", "D-1", "D#1", "E-1", "F-1", "F#1", "G-1", "G#1", "A-1", "A#1", "H-1", _
@@ -69,12 +71,7 @@ Public Class frmSeqEdit
         p.X = ColumnPos(3)
         cbSeq3.Location = p
 
-        Dim i As Integer
-
-
-  
-
-
+        Array.Clear(trackTranspose, 0, 3)
 
     End Sub
 
@@ -117,16 +114,18 @@ Public Class frmSeqEdit
         'Me.cmbSeqName.Text = Me.cmbSeqName.Items(0)
     End Sub
 
-    Public Sub follow(ByVal i As Integer, ByVal seqPos As Integer, pm As Interpreter.Mode)
-        Dim j As Integer
+    Public Sub follow(ByVal row As Integer, ByVal seqPos As Integer, pm As Interpreter.Mode)
+        Dim track As Integer
 
-
+        trackPos = row
         If chkFollow.Checked = True And Me.WindowState = FormWindowState.Normal Then
 
             If pm <> Mode.PlaySeq Then
-                For j = 0 To 2
-                    viewedSeqs(j) = WorkTrack.GetSeq(j, i)
+                For track = 0 To 2
+                    viewedSeqs(track) = WorkTrack.GetSeq(track, row)
                 Next
+
+
                 RemoveHandler cbSeq1.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
                 RemoveHandler cbSeq2.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
                 RemoveHandler cbSeq3.SelectedIndexChanged, AddressOf cbSeq1_SelectedIndexChanged
@@ -154,116 +153,6 @@ Public Class frmSeqEdit
 
     End Sub
 
-    '    Sub ViewSeq()
-    '        Dim seq_nr As Short
-    '        Dim b As Byte
-    '        Dim i, j, nr As Short
-    '        Dim duration As Short = -1
-    '        Dim cr_f As Boolean = False
-    '        Dim s As String
-    '        Dim myRow As DataRow
-
-    '        dtSeq.Clear()
-
-    '        seq_nr = Me.cmbSeqName.SelectedIndex
-    '        i = 0
-    '        nr = 0
-    '        Do
-    'wait:       For j = 0 To duration
-    '                myRow = dtSeq.NewRow()
-    '                myRow.Item(0) = nr
-    '                myRow.Item(1) = ""
-    '                myRow.Item(2) = ""
-    '                myRow.Item(3) = ""
-    '                nr += 1
-    '                dtSeq.Rows.Add(myRow)
-    '            Next
-
-    '            b = WorkSeq.Seq(seq_nr, i)
-    '            Select Case b
-    '                Case &HFF
-    '                    Exit Do
-    '                Case &HFD
-    '                    duration = WorkSeq.Seq(seq_nr, i + 1)
-    '                    i += 2
-    '                    GoTo wait
-    '                Case &HFE
-    '                    duration = WorkSeq.Seq(seq_nr, i + 1)
-    '                    i += 2
-    '            End Select
-
-    '            myRow = dtSeq.NewRow()
-    '            myRow.Item(0) = nr
-    '            nr += 1
-    '            b = WorkSeq.Seq(seq_nr, i)
-    '            i += 1
-    '            If b < 6 * 12 Then
-    '                myRow.Item(1) = NoteTable(b)
-    '            Else
-    '                myRow.Item(1) = String.Format("{0:X2}", b)
-    '            End If
-    '            ' shape
-    '            b = WorkSeq.Seq(seq_nr, i)
-    '            i += 1
-    '            myRow.Item(2) = String.Format("{0}", b)
-    '            If (b And &HE0) <> 0 Then
-    '                'seq_instr
-    '                myRow.Item(3) = String.Format("{0:X2}, ", WorkSeq.Seq(seq_nr, i))
-    '                i += 1
-    '            Else
-    '                myRow.Item(3) = ""
-    '            End If
-    '            dtSeq.Rows.Add(myRow)
-    '        Loop
-
-
-    'Do
-    '    b = WorkSeq.Seq(seq_nr, i)
-    '    i += 1
-    '    Select Case b
-    '        Case &HFD To &HFF
-    '            'If cr_f Then
-    '            '    Me.RichTextBox1.AppendText(Chr(13))
-    '            '    cr_f = False
-    '            'End If
-    '            Me.RichTextBox1.SelectionFont = f2
-    '            Select Case b
-    '                Case &HFF
-    '                    Me.RichTextBox1.AppendText("end" & Chr(13))
-    '                    Exit Do
-    '                Case &HFD
-    '                    Me.RichTextBox1.AppendText("FD: " & String.Format("{0,2}", WorkSeq.Seq(seq_nr, i)) & Chr(13))
-    '                    i += 1
-    '                Case &HFE
-    '                    Me.RichTextBox1.AppendText(String.Format("duration({0,2}), ", WorkSeq.Seq(seq_nr, i)))
-    '                    i += 1
-    '            End Select
-    '        Case Else
-    '            Me.RichTextBox1.SelectionFont = f
-    '            ' note
-    '            If b < 6 * 12 Then
-    '                s = NoteTable(b)
-    '            Else
-    '                s = String.Format("{0:X2}", b)
-    '            End If
-    '            ' shape
-    '            b = WorkSeq.Seq(seq_nr, i)
-    '            i += 1
-    '            s &= ", " & String.Format("{0}", b)
-    '            If (b And &HE0) <> 0 Then
-    '                'seq_instr
-    '                s &= ", " & String.Format("{0:X2}, ", WorkSeq.Seq(seq_nr, i))
-    '                i += 1
-    '            End If
-    '            Me.RichTextBox1.AppendText(s & Chr(13))
-    '            cr_f = True
-    '    End Select
-
-    'Loop
-
-    '    End Sub
-
-
     Private Sub cmdPlay_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdPlay.Click
         Dim si As _SND_INFO
 
@@ -288,6 +177,7 @@ Public Class frmSeqEdit
         Dim d As Short
         Dim se As ym.clSequence._SEQENTRY
         Dim brush As Brush
+
 
         myGfx.FillRectangle(Brushes.White, 0, 0, bmp.Width, bmp.Height)    'alles löschen
 
@@ -340,22 +230,24 @@ Public Class frmSeqEdit
                         s = "End"
                     Case Else
                         If d < 6 * 12 Then
+                            d += trackTranspose(i)                   ' transposed by track
                             s = NoteTable(d)
                         Else
-                            s = String.Format(" {0:X2}", d)
+                            s = String.Format(" {0:X2}", d)         ' 
                         End If
                 End Select
+                myGfx.DrawString(s, fnt, brush, ColumnPos(i + 1), y)
 
                 'Shape
                 d = se.shape
-                s &= "  " & String.Format("{0}", d)
+                s = String.Format("{0}", d)
 
                 If (d And &HE0) <> 0 Then
                     'seq_instr
                     s &= "  " & String.Format("{0:X2}", se.xtra)
                 End If
 
-                myGfx.DrawString(s, fnt, brush, ColumnPos(i + 1), y)
+                myGfx.DrawString(s, fnt, brush, ColumnPos(i + 1) + fontWidth1 * 4, y)
             Next i
             y += f.Height
         Next k
@@ -423,4 +315,15 @@ Public Class frmSeqEdit
 
     End Sub
 
+  
+    Private Sub chkBoxTranspose_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkBoxTranspose.CheckedChanged
+        If chkBoxTranspose.Checked Then
+            For track As Integer = 0 To 2
+                trackTranspose(track) = WorkTrack.GetNote(track, trackPos)
+            Next
+        Else
+            Array.Clear(trackTranspose, 0, 3)
+        End If
+        DrawSeq(Me.CreateGraphics())
+    End Sub
 End Class

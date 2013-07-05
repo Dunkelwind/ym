@@ -64,13 +64,13 @@ Public Class frmAbout
         '
         'LinkLabel1
         '
-        Me.LinkLabel1.Location = New System.Drawing.Point(72, 152)
+        Me.LinkLabel1.Location = New System.Drawing.Point(12, 152)
         Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(144, 24)
+        Me.LinkLabel1.Size = New System.Drawing.Size(258, 24)
         Me.LinkLabel1.TabIndex = 2
         Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "http://dunkelwind.wordpress.com/"
-        Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.LinkLabel1.Text = "https://github.com/Dunkelwind/ym"
+        Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label3
         '
@@ -78,7 +78,7 @@ Public Class frmAbout
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(128, 16)
         Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Version 0.17"
+        Me.Label3.Text = "Version 0.18"
         '
         'LinkLabel3
         '

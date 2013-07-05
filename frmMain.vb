@@ -416,10 +416,10 @@ Public Class Form1
         trackPos = interpreter.trackPos
         seqPos = interpreter.VoiceSet(0).seq_index
 
-        If seqPos <> lastSeqPos Then
-            Me.SeqEdit.follow(trackPos, seqPos, interpreter.PlayMode)
-            lastSeqPos = seqPos
-        End If
+        '    If seqPos <> lastSeqPos Then
+        Me.SeqEdit.follow(trackPos, seqPos, interpreter.PlayMode)
+        lastSeqPos = seqPos
+        'End If
         If trackPos <> lastTrackPos Then
             Me.StatusBar1.Text = Format(trackPos)
             Me.TrackEdit.follow(trackPos)

@@ -26,6 +26,7 @@ Partial Public Class frmSeqEdit
         Me.cmdPlay = New System.Windows.Forms.Button()
         Me.VScrollBar1 = New System.Windows.Forms.VScrollBar()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.chkBoxTranspose = New System.Windows.Forms.CheckBox()
         Me.cbSeq3 = New System.Windows.Forms.ComboBox()
         Me.cbSeq2 = New System.Windows.Forms.ComboBox()
         Me.cbSeq1 = New System.Windows.Forms.ComboBox()
@@ -57,6 +58,7 @@ Partial Public Class frmSeqEdit
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.Panel1.Controls.Add(Me.chkBoxTranspose)
         Me.Panel1.Controls.Add(Me.cbSeq3)
         Me.Panel1.Controls.Add(Me.cbSeq2)
         Me.Panel1.Controls.Add(Me.cbSeq1)
@@ -68,6 +70,16 @@ Partial Public Class frmSeqEdit
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(546, 44)
         Me.Panel1.TabIndex = 4
+        '
+        'chkBoxTranspose
+        '
+        Me.chkBoxTranspose.AutoSize = True
+        Me.chkBoxTranspose.Location = New System.Drawing.Point(446, 24)
+        Me.chkBoxTranspose.Name = "chkBoxTranspose"
+        Me.chkBoxTranspose.Size = New System.Drawing.Size(78, 17)
+        Me.chkBoxTranspose.TabIndex = 12
+        Me.chkBoxTranspose.Text = "transposed"
+        Me.chkBoxTranspose.UseVisualStyleBackColor = True
         '
         'cbSeq3
         '
@@ -136,7 +148,9 @@ Partial Public Class frmSeqEdit
         Me.Name = "frmSeqEdit"
         Me.Text = "frmSeqEdit"
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
+
     End Sub
 
     Friend WithEvents cmdPlay As System.Windows.Forms.Button
@@ -149,5 +163,6 @@ Partial Public Class frmSeqEdit
     Friend WithEvents cbSeq3 As System.Windows.Forms.ComboBox
     Friend WithEvents cbSeq2 As System.Windows.Forms.ComboBox
     Friend WithEvents cbSeq1 As System.Windows.Forms.ComboBox
+    Friend WithEvents chkBoxTranspose As System.Windows.Forms.CheckBox
 End Class
 
